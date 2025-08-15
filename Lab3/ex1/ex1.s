@@ -60,8 +60,13 @@ res_triplet:
 
     
 main:
-    addi sp, sp, -16
+    addi sp, sp, -32
     sw ra, 0(sp)
+    sw s0, 4(sp)
+    sw s1, 8(sp)
+    sw s2, 12(sp)
+    sw s3, 16(sp)
+    sw s4, 20(sp)
 
     la s0, A
     li s1, 0
@@ -91,6 +96,11 @@ main:
 
     li a0 0
     lw ra, 0(sp)
-    addi sp, sp, 16
+    lw s0, 4(sp)
+    lw s1, 8(sp)
+    lw s2, 12(sp)
+    lw s3, 16(sp)
+    lw s4, 20(sp)
+    addi sp, sp, 32
     ret
     
