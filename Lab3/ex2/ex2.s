@@ -34,7 +34,7 @@ myFilter:
 
 
 main:
-    addi sp, sp, -16
+    addi sp, sp, -48
     sw ra, 0(sp)
     sw s0, 4(sp)
     sw s1, 8(sp)
@@ -57,17 +57,21 @@ main:
         add t0, s0, s1
         lw a0, 0(t0)
         lw a1, 4(t0)
+
+        sw a0, 24(sp)
+        sw a1, 28(sp)
+
         jal myFilter
         beq a0, zero, passLoop
         
         add t3, s4, s2
         addi s2, s2, 4
 
-        add t0, s0, s1
-        lw t4, 0(t0)
-        lw t5, 4(t0)
+        lw t4, 24(sp)
+        lw t5, 28(sp)
 
         add t4, t4, t5
+        addi t4, t4, 2
         sw t4, 0(t3)
 
         passLoop:
@@ -84,5 +88,5 @@ main:
     lw s2, 12(sp)
     lw s3, 16(sp)
     lw s4, 20(sp)
-    addi sp, sp, 16
+    addi sp, sp, 48
     ret
